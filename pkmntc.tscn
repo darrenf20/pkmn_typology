@@ -11,39 +11,84 @@ grow_vertical = 2
 color = Color(0.507972, 0.507972, 0.507972, 1)
 script = ExtResource("1_bk37d")
 
-[node name="Tabs" type="TabContainer" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Tabs" type="TabContainer" parent="AspectRatioContainer"]
+layout_mode = 2
 tab_alignment = 1
 
-[node name="Attacking" type="MarginContainer" parent="Tabs"]
+[node name="Attacking" type="MarginContainer" parent="AspectRatioContainer/Tabs"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="Vbox" type="VBoxContainer" parent="Tabs/Attacking"]
+[node name="Vbox" type="VBoxContainer" parent="AspectRatioContainer/Tabs/Attacking"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Center" type="CenterContainer" parent="Tabs/Attacking/Vbox"]
+[node name="TypeSelect" type="HBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox"]
 layout_mode = 2
+alignment = 1
 
-[node name="TypeSelect" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Center"]
+[node name="Label" type="Label" parent="AspectRatioContainer/Tabs/Attacking/Vbox/TypeSelect"]
 layout_mode = 2
+text = "Select type:"
 
-[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Center/TypeSelect"]
+[node name="TypeButton" type="OptionButton" parent="AspectRatioContainer/Tabs/Attacking/Vbox/TypeSelect"]
+unique_name_in_owner = true
+clip_contents = true
 layout_mode = 2
-text = "Select type: "
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
 
-[node name="OptionButton" type="OptionButton" parent="Tabs/Attacking/Vbox/Center/TypeSelect"]
+[node name="Output" type="HFlowContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 
-[node name="Defending" type="MarginContainer" parent="Tabs"]
+[node name="X4" type="VBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Head" type="HBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Head"]
+layout_mode = 2
+text = "REALLY Super Effective (4x)"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Head"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Scroll" type="ScrollContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Panel/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Defending" type="MarginContainer" parent="AspectRatioContainer/Tabs"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 30
