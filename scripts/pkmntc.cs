@@ -1,35 +1,24 @@
 using Godot;
 using System;
+using static TypeChart;
 
 public partial class pkmntc : Node
 {
-	enum Types {
-		Normal,
-		Fighting,
-		Flying,
-		Poison,
-		Ground,
-		Rock,
-		Bug,
-		Ghost,
-		Steel,
-		Fire,
-		Water,
-		Grass,
-		Electric,
-		Psychic,
-		Ice,
-		Dragon,
-		Dark,
-		Fairy,
-	}
-
-	private static int numTypes = Enum.GetNames(typeof(Types)).Length;
-	private static ImageTexture[] icons = new ImageTexture[numTypes];
+	private static ImageTexture[] icons = new ImageTexture[TypeChart.numTypes];
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Fill in the type type chart
+		for (var i = 0; i < typeChart.GetLength(0); i++)
+		{
+			for (var j = 0; j < typeChart.GetLength(1); j++)
+			{
+				typeChart[i, j] = 1;
+			}
+		}
+
+
 		// Get the nodes we need to prepare
 		OptionButton option = GetNode<OptionButton>("%TypeButton");
 
@@ -37,7 +26,7 @@ public partial class pkmntc : Node
 		for (var i = 0; i < numTypes; i++)
 		{
 			// Create TextureImages for a type
-			string name = Enum.GetName(typeof(Types), i);
+			string name = Enum.GetName(typeof(TypeChart.Types), i);
 			string path = "images/" + name.ToLower() + ".png";
 			var image = Image.LoadFromFile(path);
 			icons[i] = ImageTexture.CreateFromImage(image);
