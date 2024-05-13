@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2yohxdcrcjyg"]
+
+[ext_resource type="Script" path="res://scripts/pkmntc.cs" id="1_bk37d"]
+
+[node name="Backing" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.507972, 0.507972, 0.507972, 1)
+script = ExtResource("1_bk37d")
+
+[node name="Tabs" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="Attacking" type="MarginContainer" parent="Tabs"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Vbox" type="VBoxContainer" parent="Tabs/Attacking"]
+layout_mode = 2
+
+[node name="Center" type="CenterContainer" parent="Tabs/Attacking/Vbox"]
+layout_mode = 2
+
+[node name="TypeSelect" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Center"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Center/TypeSelect"]
+layout_mode = 2
+text = "Select type: "
+
+[node name="OptionButton" type="OptionButton" parent="Tabs/Attacking/Vbox/Center/TypeSelect"]
+layout_mode = 2
+
+[node name="Defending" type="MarginContainer" parent="Tabs"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
