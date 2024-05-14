@@ -9,24 +9,14 @@ public partial class pkmntc : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// Fill in the type type chart
-		for (var i = 0; i < typeChart.GetLength(0); i++)
-		{
-			for (var j = 0; j < typeChart.GetLength(1); j++)
-			{
-				typeChart[i, j] = 1;
-			}
-		}
-
-
 		// Get the nodes we need to prepare
 		OptionButton option = GetNode<OptionButton>("%TypeButton");
 
 		// Load the type icons
-		for (var i = 0; i < numTypes; i++)
+		for (var i = 0; i < TypeChart.numTypes; i++)
 		{
 			// Create TextureImages for a type
-			string name = Enum.GetName(typeof(TypeChart.Types), i);
+			string name = Enum.GetName(typeof(TypeChart.Type), i);
 			string path = "images/" + name.ToLower() + ".png";
 			var image = Image.LoadFromFile(path);
 			icons[i] = ImageTexture.CreateFromImage(image);
