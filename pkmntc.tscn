@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2yohxdcrcjyg"]
 
-[ext_resource type="Script" path="res://scripts/pkmntc.cs" id="1_bk37d"]
+[ext_resource type="Script" path="res://scripts/Gui.cs" id="1_ckq1q"]
 
 [node name="Backing" type="ColorRect"]
 anchors_preset = 15
@@ -9,40 +9,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.507972, 0.507972, 0.507972, 1)
-script = ExtResource("1_bk37d")
+script = ExtResource("1_ckq1q")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="Tabs" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Tabs" type="TabContainer" parent="AspectRatioContainer"]
-layout_mode = 2
 tab_alignment = 1
 
-[node name="Attacking" type="MarginContainer" parent="AspectRatioContainer/Tabs"]
+[node name="Attacking" type="MarginContainer" parent="Tabs"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="Vbox" type="VBoxContainer" parent="AspectRatioContainer/Tabs/Attacking"]
+[node name="Vbox" type="VBoxContainer" parent="Tabs/Attacking"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 50
 
-[node name="TypeSelect" type="HBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox"]
+[node name="TypeSelect" type="HBoxContainer" parent="Tabs/Attacking/Vbox"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="AspectRatioContainer/Tabs/Attacking/Vbox/TypeSelect"]
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/TypeSelect"]
 layout_mode = 2
 text = "Select type:"
 
-[node name="TypeButton" type="OptionButton" parent="AspectRatioContainer/Tabs/Attacking/Vbox/TypeSelect"]
+[node name="TypeButton" type="OptionButton" parent="Tabs/Attacking/Vbox/TypeSelect"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
@@ -50,48 +47,232 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Output" type="HFlowContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox"]
+[node name="Output" type="HFlowContainer" parent="Tabs/Attacking/Vbox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
+alignment = 1
 
-[node name="X4" type="VBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output"]
+[node name="X4_1" type="VBoxContainer" parent="Tabs/Attacking/Vbox/Output"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Head" type="HBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4"]
+[node name="Head" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Output/X4_1"]
 layout_mode = 2
-theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Head"]
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Output/X4_1/Head"]
 layout_mode = 2
-text = "REALLY Super Effective (4x)"
+text = "4.00x"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Head"]
-layout_mode = 2
-text = "Copy"
-
-[node name="Panel" type="PanelContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4"]
+[node name="Spacer" type="Control" parent="Tabs/Attacking/Vbox/Output/X4_1/Head"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Scroll" type="ScrollContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Panel"]
-custom_minimum_size = Vector2(0, 100)
+[node name="Count" type="Label" parent="Tabs/Attacking/Vbox/Output/X4_1/Head"]
 layout_mode = 2
-horizontal_scroll_mode = 0
+horizontal_alignment = 1
 
-[node name="List" type="VBoxContainer" parent="AspectRatioContainer/Tabs/Attacking/Vbox/Output/X4/Panel/Scroll"]
+[node name="Button" type="Button" parent="Tabs/Attacking/Vbox/Output/X4_1/Head"]
 layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="Tabs/Attacking/Vbox/Output/X4_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="ItemList" parent="Tabs/Attacking/Vbox/Output/X4_1/Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_columns = 2
+
+[node name="X2_1" type="VBoxContainer" parent="Tabs/Attacking/Vbox/Output"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 5
+alignment = 1
 
-[node name="Defending" type="MarginContainer" parent="AspectRatioContainer/Tabs"]
+[node name="Head" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Output/X2_1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Output/X2_1/Head"]
+layout_mode = 2
+text = "2.00x"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Tabs/Attacking/Vbox/Output/X2_1/Head"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Count" type="Label" parent="Tabs/Attacking/Vbox/Output/X2_1/Head"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Tabs/Attacking/Vbox/Output/X2_1/Head"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="Tabs/Attacking/Vbox/Output/X2_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="ItemList" parent="Tabs/Attacking/Vbox/Output/X2_1/Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_columns = 2
+
+[node name="X1_1" type="VBoxContainer" parent="Tabs/Attacking/Vbox/Output"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Head" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Output/X1_1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Output/X1_1/Head"]
+layout_mode = 2
+text = "1.00x"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Tabs/Attacking/Vbox/Output/X1_1/Head"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Count" type="Label" parent="Tabs/Attacking/Vbox/Output/X1_1/Head"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Tabs/Attacking/Vbox/Output/X1_1/Head"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="Tabs/Attacking/Vbox/Output/X1_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="ItemList" parent="Tabs/Attacking/Vbox/Output/X1_1/Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_columns = 2
+
+[node name="X1_2" type="VBoxContainer" parent="Tabs/Attacking/Vbox/Output"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Head" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Output/X1_2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Output/X1_2/Head"]
+layout_mode = 2
+text = "0.50x"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Tabs/Attacking/Vbox/Output/X1_2/Head"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Count" type="Label" parent="Tabs/Attacking/Vbox/Output/X1_2/Head"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Tabs/Attacking/Vbox/Output/X1_2/Head"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="Tabs/Attacking/Vbox/Output/X1_2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="ItemList" parent="Tabs/Attacking/Vbox/Output/X1_2/Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_columns = 2
+
+[node name="X1_4" type="VBoxContainer" parent="Tabs/Attacking/Vbox/Output"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Head" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Output/X1_4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Output/X1_4/Head"]
+layout_mode = 2
+text = "0.25x"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Tabs/Attacking/Vbox/Output/X1_4/Head"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Count" type="Label" parent="Tabs/Attacking/Vbox/Output/X1_4/Head"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Tabs/Attacking/Vbox/Output/X1_4/Head"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="Tabs/Attacking/Vbox/Output/X1_4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="ItemList" parent="Tabs/Attacking/Vbox/Output/X1_4/Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_columns = 2
+
+[node name="X0_1" type="VBoxContainer" parent="Tabs/Attacking/Vbox/Output"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Head" type="HBoxContainer" parent="Tabs/Attacking/Vbox/Output/X0_1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Attacking/Vbox/Output/X0_1/Head"]
+layout_mode = 2
+text = "0.00x"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Tabs/Attacking/Vbox/Output/X0_1/Head"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Count" type="Label" parent="Tabs/Attacking/Vbox/Output/X0_1/Head"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Tabs/Attacking/Vbox/Output/X0_1/Head"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Panel" type="PanelContainer" parent="Tabs/Attacking/Vbox/Output/X0_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="ItemList" parent="Tabs/Attacking/Vbox/Output/X0_1/Panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+max_columns = 2
+
+[node name="Defending" type="MarginContainer" parent="Tabs"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
+
+[connection signal="item_selected" from="Tabs/Attacking/Vbox/TypeSelect/TypeButton" to="." method="_on_type_button_item_selected"]
