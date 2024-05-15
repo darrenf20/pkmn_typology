@@ -22,16 +22,22 @@ public partial class Gui : Node
 		outputTable.Add(0.25f, output.GetNode("X1_4/Panel/List"));
 		outputTable.Add(0.00f, output.GetNode("X0_1/Panel/List"));
 
+		// Set up buttons to allow copying to clipboard
+		foreach (var child in output.GetChildren())
+		{
+			var list = child.GetNode<ItemList>("Panel/List");
+			var button = child.GetNode<Button>("Head/Button");
+			button.Pressed += () => CopyListToClipboard(list);
+		}
+
 		// Load the type icons
 		for (var i = 0; i < TypeChart.numTypes; i++)
 		{
-			// Create TextureImages for a type
 			string name = Enum.GetName(typeof(TypeChart.Type), i);
 			string path = "images/" + name.ToLower() + ".png";
 			var image = Image.LoadFromFile(path);
 			icons[i] = ImageTexture.CreateFromImage(image);
-
-			// Add it to type selectors
+			icons[i].SetMeta("name", name);
 			option.AddIconItem(icons[i], "");
 		}
 
@@ -83,10 +89,27 @@ public partial class Gui : Node
 		}
 	}
 
+	private void CopyListToClipboard(ItemList list)
+	{
+		string text = "";
+		for (var i = 0; i < list.ItemCount; i += 2)
+		{
+			string line = "\n";
+
+			var fst = list.GetItemIcon(i).GetMeta("name", "").ToString();
+
+			if (list.GetItemIcon(i + 1) is not null)
+			{
+				var snd = list.GetItemIcon(i + 1).GetMeta("name", "").ToString();
+				line = "/" + snd + line;
+			}
+			text += fst + line;
+		}
+		Godot.DisplayServer.ClipboardSet(text);
+	}
+
 	private void _on_type_button_item_selected(long index)
 	{
 		UpdateOutput();
 	}
 }
-
-
