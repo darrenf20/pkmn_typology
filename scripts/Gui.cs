@@ -14,7 +14,7 @@ public partial class Gui : Node
 		// Get the nodes we need to prepare
 		OptionButton option = GetNode<OptionButton>("%TypeButton");
 
-		var output = GetNode<HFlowContainer>("%Output");
+		var output = GetNode("%Output");
 		outputTable.Add(4.00f, output.GetNode("X4_1/Panel/List"));
 		outputTable.Add(2.00f, output.GetNode("X2_1/Panel/List"));
 		outputTable.Add(1.00f, output.GetNode("X1_1/Panel/List"));
@@ -56,13 +56,23 @@ public partial class Gui : Node
 		var selectedType = (TypeChart.Type)GetNode<OptionButton>("%TypeButton").GetSelectedId();
 
 		// Start with single types
-		foreach (var type in Enum.GetValues<TypeChart.Type>())
+		for (var i = 0; i < TypeChart.numTypes; i++)
 		{
-			ImageTexture icon = icons[(int)type];
-			var modifier = TypeChart.GetModifier(selectedType, type);
+			ImageTexture firstIcon = icons[i];
+			var modifier = TypeChart.GetModifier(selectedType, (TypeChart.Type)i);
 			var list = outputTable[modifier] as ItemList;
-			list.AddIconItem(icon, false);
+			list.AddIconItem(firstIcon, false);
 			list.AddIconItem(null, false); // Fill in empty slot of second column
+
+			// Go over the dual typings
+			for (var j = i + 1; j < TypeChart.numTypes; j++)
+			{
+				ImageTexture secondIcon = icons[j];
+				var modifier2 = modifier * TypeChart.GetModifier(selectedType, (TypeChart.Type)j);
+				list = outputTable[modifier2] as ItemList;
+				list.AddIconItem(firstIcon, false);
+				list.AddIconItem(secondIcon, false);
+			}
 		}
 
 		// Show how many entries are in each list
